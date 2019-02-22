@@ -1,0 +1,5 @@
+sum-up-numbers-simple([], 0).
+sum-up-numbers-simple([X | Tail], N):- ( number(X) -> 
+                                       		sum-up-numbers-simple(Tail, N1), N is X + N1 ; 
+                                       		sum-up-numbers-simple(Tail, N)
+                                       ).
