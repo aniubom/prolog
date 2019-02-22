@@ -16,4 +16,32 @@ sum-up-numbers-general([X | Tail], N):- ( number(X) ->
                                             	sum-up-numbers-general(Tail, N)
                                             )
                                         ).
-                                       
+# Q3 
+
+remove-char([], L, L).
+remove-char([X | Tail], L, L2):- ( number(X) ->  
+                                	L3 = [X | L], remove-char(Tail, L3, L2);
+                             		remove-char(Tail, L, L2)
+                             	 ).
+
+min-element([], M, M).
+min-element([X | Tail], M, K):- ( X < M ->  
+                                        min-element(Tail, X, K);
+                                        min-element(Tail, M, K)
+                                ).
+
+min-element-any([], []).
+min-element-any([X | Tail], Min):- min-element(Tail, X, Min);
+    
+min-element-a([], []).  
+min-element-a(L, Min):- remove-char(L, [], L3), min-element-any(L3, Min).
+
+min-element-first([], _, _).
+min-element-first(L1, Min1, Min2):- ( Min1 > Min2 -> 
+                                           write("huh"); 
+                                           write(Min1), delete(L1, Min1, L1)
+                                    ).   
+
+min-element-both(L1, L2):- remove-char(L1, [], L3), remove-char(L2, [], L4), min-element-any(L4, Min2), min-element-any(L3, Min1), min-element-first(L3, Min1, Min2).
+
+
